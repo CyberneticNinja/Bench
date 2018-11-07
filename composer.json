@@ -1,0 +1,23 @@
+{
+    "name": "abrokwahs/benchmark",
+    "authors": [
+        {
+            "name": "Stephen Abrokwah",
+            "email": "AbrokwahS@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^4.1",
+        "filp/whoops": "^2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Benchmark\\": "",
+            "Comparator\\": "",
+            "Reporter\\": ""
+        }
+    }
+}
