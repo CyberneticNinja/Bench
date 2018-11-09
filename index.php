@@ -7,30 +7,56 @@
  */
     require('vendor/autoload.php');
     use Benchmark\Benchmark;
+    use Comparator\Comparator;
 
     $whoops = new \Whoops\Run;
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
     $whoops->register();
 
     function hi(){
-        sleep(5);
+        sleep(2);
         echo 'hello world'."<br/>";
     }
 
     function tired(){
         echo ' I am tired let me sleep a bit <br/>';
-        sleep(6);
+        sleep(3);
         echo ' I am awake now <br/>';
     }
 
     function favorite($movie){
-        sleep(7);
+        sleep(4);
         echo "My favorite movie is $movie ".'<br/>';
     }
 
+    function Fibonacci($n){
+
+        $num1 = 0;
+        $num2 = 1;
+
+        $counter = 0;
+        while ($counter < $n){
+//            echo ' '.$num1;
+            sleep(0.5);
+            $num3 = $num2 + $num1;
+            $num1 = $num2;
+            $num2 = $num3;
+            $counter = $counter + 1;
+        }
+    }
+
+    //Benchmarks
     $bench = new Benchmark();
 
     $bench->runBenchmark("tired",3,[]);
     $bench->runBenchmark("favorite",3,["The Godfather:Part II"]);
     $bench->runBenchmark("hi" ,5,[]);
+    $bench->runBenchmark("Fibonacci" ,5,[25]);
 
+    //Comparison of Benchmark results
+    $compare = new Comparator();
+    $compare->minExecution($bench->getstoredResults());
+    $compare->maxExecution($bench->getstoredResults());
+    dump($compare->maxExecution($bench->getstoredResults()));
+    dump($compare->minExecution($bench->getstoredResults()));
+    $avgMean = $compare->MeanExecution($bench->getstoredResults());

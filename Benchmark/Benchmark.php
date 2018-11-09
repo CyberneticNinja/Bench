@@ -36,7 +36,8 @@ class Benchmark
             call_user_func_array($func,$parameters);
             $end = $this->getMicroTime();
 
-            $roundedResult = round($end-$start,8);
+//            $roundedResult = round($end-$start,8);
+            $roundedResult = $end-$start;
             $resultSet[] = $roundedResult;
         }
         $this->storedResults[(string)$func ] = $resultSet;
