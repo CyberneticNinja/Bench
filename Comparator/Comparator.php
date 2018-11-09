@@ -27,7 +27,7 @@ class Comparator
         return ($a < $b) ? -1 : 1;
     }
 
-    // Comparison function
+    // 2nd Comparison function
     protected function cmp2($a, $b) {
         if ($a == $b) {
             return 0;
@@ -36,32 +36,31 @@ class Comparator
     }
 
 
+    //minExecution(array $functionResults) returns an array sorted by the fastest execution-time containing the
+    //single fastest execution time.
     public function minExecution(array $functionResults)  {
         $sortAndTrimmed = [];
         foreach ($functionResults as $key =>$value)   {
             sort($value,SORT_NUMERIC);
             $sortAndTrimmed[$key] = $value[0];
         }
-
         uasort($sortAndTrimmed,array($this,"cmp"));
-//        dump($sortAndTrimmed);
-//        dump($functionResults);
         return $sortAndTrimmed;
     }
 
+    //maxExecution(array $functionResults) returns an array sorted by the slowest execution-time containing the
+    //single longest execution time.
     public function maxExecution(array $functionResults)  {
         $sortAndTrimmed = [];
         foreach ($functionResults as $key =>$value)   {
             rsort($value,SORT_NUMERIC);
             $sortAndTrimmed[$key] = $value[0];
         }
-
         uasort($sortAndTrimmed,array($this,"cmp2"));
-//        dump($sortAndTrimmed);
-//        dump($functionResults);
         return $sortAndTrimmed;
     }
-
+    //minExecution(array $functionResults) returns an array sorted by the fastest avg execution-time containing the
+    //avg execution time.
     public function MeanExecution(array $functionResults)  {
         $results = [];
 
@@ -75,5 +74,18 @@ class Comparator
         }
         uasort($results,array($this,"cmp"));
         return $results;
+    }
+
+    public function minExecutionDescending(array $functionResults)  {
+        $reverse = array_reverse($this->minExecution($functionResults));
+        return $reverse;
+    }
+    public function maxExecutionDescending(array $functionResults)  {
+        $reverse = array_reverse($this->maxExecution($functionResults));
+        return $reverse;
+    }
+    public function MeanExecutionDescending(array $functionResults)  {
+        $reverse = array_reverse($this->MeanExecution($functionResults));
+        return $reverse;
     }
 }
