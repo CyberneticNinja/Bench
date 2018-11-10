@@ -58,36 +58,26 @@
     $compare = new Comparator();
     $compare->minExecution($bench->getstoredResults());
     $compare->maxExecution($bench->getstoredResults());
-    dump($compare->maxExecution($bench->getstoredResults()));
-    dump($compare->maxExecution($bench->getstoredResults()));
-//    dump($compare->minExecution($bench->getstoredResults()));
-//    $avgMean = $compare->MeanExecution($bench->getstoredResults());
-//
-    $report = new Reporter('testX','.html');
+//    dump($compare->maxExecution($bench->getstoredResults()));
+//    dump($compare->maxExecution($bench->getstoredResults()));
+
+
+    //reports
+    $report = new Reporter('testXx','.html');
     $report->add('These are the initial functions and their execution times',$bench->getstoredResults());
-////    $report->add('Max execution times',$compare->maxExecution($bench->getstoredResults()));
     $report->add('Longest execution time',$compare->maxExecution($bench->getstoredResults()));
-//    $report->add('Quickest execution time',$compare->minExecution($bench->getstoredResults()));
-//
-//    echo $report->getFormatedPrint();
-//
+
     $report->write();
-//
-//    $report = new Reporter('test2','.txt');
-//    $report->add('These are the initial functions and their execution times',$bench->getstoredResults());
-//    //    $report->add('Max execution times',$compare->maxExecution($bench->getstoredResults()));
-//    $report->add('Longest execution time',$compare->maxExecution($bench->getstoredResults()));
-//    $report->add('Quickest execution time',$compare->minExecution($bench->getstoredResults()));
-//
-//    echo $report->getFormatedPrint();
-//
-//    $report->write();
-//
-//    $report = new Reporter('test3','.pdf');
-//    $report->add('These are the initial functions and their execution times',$bench->getstoredResults());
-//    $report->add('Longest execution time',$compare->maxExecution($bench->getstoredResults()));
-//    $report->add('Quickest execution time',$compare->minExecution($bench->getstoredResults()));
-//
-//    echo $report->getFormatedPrint();
-//
-//    $report->write();
+
+    $report = new Reporter('test2xx','.txt');
+    $report->add('These are the initial functions and their execution times',$bench->getstoredResults());
+    $report->add('Longest execution time',$compare->maxExecution($bench->getstoredResults()));
+    $report->write();
+
+    $report = new Reporter('test3xx','.pdf');
+    $report->add('These are the initial functions and their execution times',$bench->getstoredResults());
+    $report->add('Longest execution time',$compare->maxExecution($bench->getstoredResults()));
+    $report->add('Quickest execution time',$compare->minExecution($bench->getstoredResults()));
+    $report->add('Quickest execution time (Descending)',$compare->minExecutionDescending($bench->getstoredResults()));
+
+    $report->write();
